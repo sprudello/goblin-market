@@ -1,6 +1,7 @@
 @goblin_api_HostAddress = http://localhost:5256
 
-GET {{goblin_api_HostAddress}}/weatherforecast/
-Accept: application/json
+# Example Product API calls (to be implemented)
+# GET {{goblin_api_HostAddress}}/api/products/
+# Accept: application/json
 
 ###

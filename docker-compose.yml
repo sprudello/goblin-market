@@ -9,26 +9,26 @@ services:
     ports:
       - "8080:8080"
     environment:
-      - ASPNETCORE_ENVIRONMENT=Development
+      - ASPNETCORE_ENVIRONMENT=Development # Changed to Development
       - ASPNETCORE_URLS=http://+:8080
     depends_on:
       - db
-    volumes:
+    volumes: 
       - ./goblin-api:/app
 
-  goblin-webapp: # Add this new service for the React frontend
+  goblin-webapp: 
     build:
       context: ./goblin-webapp
       dockerfile: Dockerfile
     ports:
-      - "3000:3000" # Expose React app on port 3000
-    volumes:
-      - ./goblin-webapp:/app # Mount the local frontend code for development
-      - /app/node_modules # Don't mount local node_modules, use the ones in the container
-    environment:
-      - CHOKIDAR_USEPOLLING=true # Useful for Docker volume mounting and hot reloading
+      - "3000:3000" 
+    volumes: # Re-enabled for development
+      - ./goblin-webapp:/app 
+      - /app/node_modules 
+    environment: # Re-enabled CHOKIDAR_USEPOLLING for development
+      - CHOKIDAR_USEPOLLING=true 
     depends_on:
-      - goblin-api # Optional: if frontend needs API to be up first
+      - goblin-api 
 
   db:
     image: postgres:latest

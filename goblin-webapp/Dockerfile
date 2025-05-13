@@ -1,19 +1,19 @@
+# Stage 1: Development server (uses react-scripts start)
 FROM node:18-alpine
-
 WORKDIR /app
 
-# Copy package.json and package-lock.json (if it exists)
-# This ensures that we install the exact dependencies
+# Copy package.json and package-lock.json (or yarn.lock)
 COPY package*.json ./
 
-# Install project dependencies
+# Install dependencies
 RUN npm install
 
-# Copy the rest of the application code into the image
+# Copy the rest of the application code
+# This will be overridden by the volume mount in docker-compose for development
 COPY . .
 
-# Create React App typically runs on port 3000
+# Expose the port React app runs on
 EXPOSE 3000
 
-# Command to start the development server
+# Start the development server
 CMD ["npm", "start"]
